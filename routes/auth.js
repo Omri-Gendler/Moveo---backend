@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
     }
 
     const user = new User({
-      username: userName,
+      fullName: userName,
       email,
       password
     })
@@ -72,7 +72,7 @@ router.post('/register', async (req, res) => {
       token,
       user: {
         id: user._id,
-        username: user.username,
+        fullName: user.fullName,
         email: user.email
       }
     })
