@@ -5,6 +5,7 @@ const connectDB = require('./config/database')
 
 const authRoutes = require('./routes/auth')
 const feedbackRoutes = require('./routes/feedback')
+const preferencesRoutes = require('./routes/preferences')
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/auth', authRoutes)
 app.use('/api/feedback', feedbackRoutes)
+app.use('/api/preferences', preferencesRoutes)
 
 app.get('/health', (req, res) => {
   res.json({
