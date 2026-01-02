@@ -34,7 +34,7 @@ const getCryptoNews = async (filter = 'hot') => {
       cache.data = fallbackNews
       cache.lastUpdated = now
     }
-    return cache.data || fallbackNews
+    return cache.data
   }
 }
 
