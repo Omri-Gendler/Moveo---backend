@@ -3,7 +3,7 @@ const router = express.Router()
 const { getCryptoNews } = require('../services/newsService')
 const { getCryptoPrices } = require('../services/cryptoService')
 const { getAiInsight } = require('../services/aiService')
-const memes = require('../data/memes.json')
+const { getRandomMeme } = require('../services/memeService')
 
 router.get('/', async (req, res) => {
     try {
@@ -32,14 +32,13 @@ router.get('/', async (req, res) => {
         const topCoinChange = formattedCoins[0]?.change24h || 0
 
         const aiInsight = await getAiInsight(newsSummary, topCoinChange)
-
-        const randomMeme = memes[Math.floor(Math.random() * memes.length)]
+        const randomMeme = getRandomMeme()
 
         res.json({
             news: formattedNews,
             coins: formattedCoins,
             aiInsight: aiInsight,
-            meme: randomMeme.url
+            meme: randomMeme
         })
 
     } catch (err) {
