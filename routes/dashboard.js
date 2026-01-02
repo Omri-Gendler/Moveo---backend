@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
         const formattedNews = rawNews.slice(0, 5).map(article => ({
             id: article.id,
             title: article.title,
-            source: article.source.title || article.domain,
+            source: article.source?.title || article.source?.domain || article.domain || 'Crypto News',
             url: article.url
         }))
 

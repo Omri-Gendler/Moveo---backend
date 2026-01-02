@@ -11,7 +11,7 @@ const getCryptoNews = async (filter = 'hot') => {
   }
 
   try {
-    const response = await axios.get('https://cryptopanic.com/api/v1/posts/', {
+    const response = await axios.get('https://cryptopanic.com/api/developer/v2/posts/', {
       params: {
         auth_token: process.env.NEWS_API_KEY,
         filter: filter,
@@ -22,9 +22,6 @@ const getCryptoNews = async (filter = 'hot') => {
     cache.lastUpdated = now
     return cache.data
   } catch (error) {
-    console.error('CryptoPanic Error:', error.message)
-    
-    // Use static fallback news
     const fallbackNews = [
       { id: 1, title: 'Bitcoin Surges Past $90,000 Mark', source: { title: 'CoinTelegraph' }, url: 'https://cointelegraph.com' },
       { id: 2, title: 'Ethereum 2.0 Staking Reaches New Milestone', source: { title: 'CoinDesk' }, url: 'https://coindesk.com' },
