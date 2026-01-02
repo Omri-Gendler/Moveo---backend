@@ -23,7 +23,11 @@ const authMiddleware = async (req, res, next) => {
       })
     }
 
-    req.user = user
+    req.user = {
+      userId: user._id,
+      email: user.email,
+      fullName: user.fullName
+    }
     next()
   } catch (error) {
     if (error.name === 'JsonWebTokenError') {
