@@ -11,7 +11,7 @@ const getCryptoNews = async (filter = 'hot') => {
   }
 
   try {
-    const response = await axios.get('https://cryptopanic.com/api/free/v1/posts/', {
+    const response = await axios.get('https://cryptopanic.com/api/v1/posts/', {
       params: {
         auth_token: process.env.NEWS_API_KEY,
         filter: filter,
@@ -24,30 +24,20 @@ const getCryptoNews = async (filter = 'hot') => {
   } catch (error) {
     console.error('CryptoPanic Error:', error.message)
     
-    try {
-      const response = await axios.get('https://api.coingecko.com/api/v3/news')
-      const newsData = response.data.data.slice(0, 10).map((item, index) => ({
-        id: index + 1,
-        title: item.title,
-        url: item.url,
-        source: { title: item.news_site }
-      }))
-      cache.data = newsData
+    // Use static fallback news
+    const fallbackNews = [
+      { id: 1, title: 'Bitcoin Surges Past $90,000 Mark', source: { title: 'CoinTelegraph' }, url: 'https://cointelegraph.com' },
+      { id: 2, title: 'Ethereum 2.0 Staking Reaches New Milestone', source: { title: 'CoinDesk' }, url: 'https://coindesk.com' },
+      { id: 3, title: 'Major Banks Announce Crypto Custody Services', source: { title: 'Bloomberg Crypto' }, url: 'https://bloomberg.com/crypto' },
+      { id: 4, title: 'DeFi Protocol Launches New Yield Farming Program', source: { title: 'DeFi Pulse' }, url: 'https://defipulse.com' },
+      { id: 5, title: 'Regulatory Framework Proposed for Digital Assets', source: { title: 'Reuters' }, url: 'https://reuters.com' }
+    ]
+    
+    if (!cache.data) {
+      cache.data = fallbackNews
       cache.lastUpdated = now
-      return newsData
-    } catch (fallbackError) {
-      console.error('Fallback news error:', fallbackError.message)
-      const fallbackNews = [
-        { id: 1, title: 'Bitcoin Reaches New All-Time High', source: { title: 'CryptoNews' }, url: '#' },
-        { id: 2, title: 'Ethereum Upgrade Successfully Deployed', source: { title: 'CoinDesk' }, url: '#' },
-        { id: 3, title: 'Major Institution Adopts Crypto Payments', source: { title: 'Bloomberg' }, url: '#' }
-      ]
-      if (!cache.data) {
-        cache.data = fallbackNews
-        cache.lastUpdated = now
-      }
-      return cache.data || fallbackNews
     }
+    return cache.data || fallbackNews
   }
 }
 

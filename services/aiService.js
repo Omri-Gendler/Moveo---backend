@@ -23,13 +23,13 @@ const getAiInsight = async (newsHeadlines, topCoinChange) => {
 
   try {
     const response = await axios.post(
-      'https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2',
+      'https://api-inference.huggingface.co/models/google/flan-t5-base',
       { inputs: prompt },
       { headers: { Authorization: `Bearer ${process.env.HF_API_KEY}` } }
     )
     
     const text = response.data[0]?.generated_text || "HODL is the best strategy today!"
-    const insight = text.replace(prompt, '').trim()
+    const insight = text.trim()
     
     cache.data = insight
     cache.lastUpdated = now
