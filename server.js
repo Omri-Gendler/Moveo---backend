@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/auth', authRoutes)
 app.use('/api/feedback', feedbackRoutes)
 app.use('/api/preferences', preferencesRoutes)
+app.use('/api/dashboard', require('./routes/dashboard'))
 
 app.get('/health', (req, res) => {
   res.json({
