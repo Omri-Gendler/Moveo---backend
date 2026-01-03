@@ -48,12 +48,26 @@ const getAiInsight = async (newsHeadlines, topCoinChange) => {
 
   } catch (error) {
     console.error('❌ AI Error:', error.response?.data || error.message)
-    const fallback = "Market is volatile. Stay safe and HODL!"
-    if (!cache.data) {
-      cache.data = fallback
-      cache.lastUpdated = now
+    
+    // Return cached data if available, otherwise use contextual fallback
+    if (cache.data && cache.data !== "Market is volatile. Stay safe and HODL!") {
+      console.log('Using previous cached AI insight')
+      return cache.data
     }
-    return cache.data
+    
+    // Generate contextual fallback based on market conditions
+    let fallback
+    if (topCoinChange > 5) {
+      fallback = "Bitcoin is surging! Stay informed and consider taking profits. Remember, what goes up can come down."
+    } else if (topCoinChange < -5) {
+      fallback = "Market dip detected. This could be a buying opportunity for long-term holders. DYOR and invest wisely!"
+    } else {
+      fallback = "Market is stable. Perfect time to research and plan your next move. Stay patient and HODL wisely!"
+    }
+    
+    cache.data = fallback
+    cache.lastUpdated = now
+    return fallback
   }
 }
 

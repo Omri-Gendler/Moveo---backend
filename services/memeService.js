@@ -12,15 +12,20 @@ const getRandomMeme = () => {
     }
 
     if (!memes || memes.length === 0) {
-        return "https://i.imgflip.com/4t0m5.jpg"
+        return {
+            url: "https://i.imgflip.com/4t0m5.jpg",
+            caption: "Crypto market in a nutshell",
+            title: "Default Crypto Meme"
+        }
     }
 
     const randomIndex = Math.floor(Math.random() * memes.length)
-    const selectedMeme = memes[randomIndex].url
+    const selectedMeme = memes[randomIndex]
     
     cache.meme = selectedMeme
     cache.lastUpdated = now
     
+    console.log('📸 New meme selected:', selectedMeme.title)
     return selectedMeme
 }
 

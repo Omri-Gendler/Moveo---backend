@@ -1,27 +1,38 @@
 [
   {
     "id": 1,
-    "url": "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
-    "title": "Bitcoin logo"
+    "url": "https://i.imgflip.com/30b1gx.jpg",
+    "caption": "When you check your portfolio after a market dip",
+    "title": "Disaster Girl Crypto"
   },
   {
     "id": 2,
-    "url": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400",
-    "title": "Crypto coins"
+    "url": "https://i.imgflip.com/4t0m5.jpg",
+    "caption": "HODL or sell? That is the question",
+    "title": "Confused Crypto Investor"
   },
   {
     "id": 3,
-    "url": "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=400",
-    "title": "Bitcoin golden"
+    "url": "https://i.imgflip.com/1bij.jpg",
+    "caption": "Me explaining crypto to my parents",
+    "title": "Success Kid Crypto"
   },
   {
     "id": 4,
-    "url": "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=400",
-    "title": "Crypto chart"
+    "url": "https://i.imgflip.com/26am.jpg",
+    "caption": "When Bitcoin goes to the moon",
+    "title": "Excited Crypto Trader"
   },
   {
     "id": 5,
-    "url": "https://images.unsplash.com/photo-1642104704074-907c0698b98d?w=400",
-    "title": "Digital currency"
+    "url": "https://i.imgflip.com/3oevdk.jpg",
+    "caption": "Bought the dip, dip keeps dipping",
+    "title": "Sad Crypto Holder"
+  },
+  {
+    "id": 6,
+    "url": "https://i.imgflip.com/261o3j.jpg",
+    "caption": "When you finally understand blockchain",
+    "title": "Roll Safe Crypto"
   }
 ]
