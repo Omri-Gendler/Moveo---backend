@@ -258,24 +258,25 @@ The application uses `render.yaml` for automatic deployment configuration. All e
 
 ### MongoDB Atlas - Read-Only Access
 
-For verification purposes, here is a **read-only** connection string to the MongoDB database. You can use **MongoDB Compass** or any MongoDB client to verify stored data.
+For verification purposes, a **read-only** MongoDB connection will be provided separately for security reasons.
 
 </div>
 
-```text
-mongodb+srv://moveo_guest:Moveo_Boost2026@stations.yvgiuub.mongodb.net/test?appName=stations
-```
-
-<div align="center">
+**Database Structure:**
 
 | Database | Collections |
 |----------|------------|
 | **test** | users, userpreferences, feedbacks |
 
-**Instructions:**
-1. Copy the connection string above
-2. Open MongoDB Compass or your preferred client
-3. Paste the connection string
-4. Explore the data structure and entries
+**To Request Access:**
+- Contact the repository owner for secure read-only credentials
+- Credentials are not published publicly for security reasons
+- Access will be provided through secure channels
+
+**What You Can Verify:**
+- User registration and authentication data
+- User preferences storage
+- Feedback tracking system
+- Data schema and relationships
 
 </div>
