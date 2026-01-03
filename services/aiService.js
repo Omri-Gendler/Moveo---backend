@@ -22,29 +22,38 @@ const getAiInsight = async (newsHeadlines, topCoinChange) => {
   }
 
   try {
+    console.log('🤖 Requesting AI insight...')
     const response = await axios.post(
-      'https://api-inference.huggingface.co/models/google/flan-t5-base',
-      { inputs: prompt },
-      { headers: { Authorization: `Bearer ${process.env.HF_API_KEY}` } }
+      'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
+      { 
+        inputs: `Summarize this crypto market situation in one encouraging sentence: ${newsHeadlines}. Bitcoin is ${topCoinChange > 0 ? 'up' : 'down'} ${Math.abs(topCoinChange)}%.`,
+        parameters: { max_length: 50, min_length: 20 }
+      },
+      { 
+        headers: { Authorization: `Bearer ${process.env.HF_API_KEY}` },
+        timeout: 30000
+      }
     )
     
-    const text = response.data[0]?.generated_text || "HODL is the best strategy today!"
+    console.log('AI Response:', JSON.stringify(response.data))
+    const text = response.data[0]?.summary_text || response.data[0]?.generated_text || "Stay informed and HODL wisely!"
     const insight = text.trim()
     
     cache.data = insight
     cache.lastUpdated = now
     cache.lastPrompt = cacheKey
+    console.log('✅ AI insight generated')
     
     return insight
 
   } catch (error) {
-    console.error('AI Error:', error.message)
-    const fallback = "Market is volatile. Stay safe!"
+    console.error('❌ AI Error:', error.response?.data || error.message)
+    const fallback = "Market is volatile. Stay safe and HODL!"
     if (!cache.data) {
       cache.data = fallback
       cache.lastUpdated = now
     }
-    return cache.data || fallback
+    return cache.data
   }
 }
 
