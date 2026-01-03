@@ -254,29 +254,22 @@ The application uses `render.yaml` for automatic deployment configuration. All e
 
 ## 🔐 DB Access for Reviewers
 
-<div align="center">
+**Role:** Read-Only Guest (Safe for public review)
 
-### MongoDB Atlas - Read-Only Access
+> **📌 Security Note:** I'm aware that including credentials in a public repository is not a best practice. However, for your convenience during the review process, I've created a dedicated **read-only guest account** with restricted permissions. This account can only view data and cannot modify, delete, or perform any write operations, ensuring there's no security risk or data leakage.
 
-For verification purposes, a **read-only** MongoDB connection will be provided separately for security reasons.
+To verify user registration, preferences, and feedback persistence, please use the following connection string with **MongoDB Compass**:
 
-</div>
+```text
+mongodb+srv://moveo_guest:Moveo_Boost2026@stations.yvgiuub.mongodb.net/test?appName=stations
+```
+### What You Can Explore:
 
-**Database Structure:**
+| Database | Collections | Description |
+|----------|------------|-------------|
+| **test** | `users` | User registration data with encrypted passwords |
+| **test** | `userpreferences` | User-specific preferences and settings |
+| **test** | `feedbacks` | User feedback votes on dashboard sections |
 
-| Database | Collections |
-|----------|------------|
-| **test** | users, userpreferences, feedbacks |
+**Permissions:** This guest account has **read-only** access and cannot perform any write, update, or delete operations.
 
-**To Request Access:**
-- Contact the repository owner for secure read-only credentials
-- Credentials are not published publicly for security reasons
-- Access will be provided through secure channels
-
-**What You Can Verify:**
-- User registration and authentication data
-- User preferences storage
-- Feedback tracking system
-- Data schema and relationships
-
-</div>
